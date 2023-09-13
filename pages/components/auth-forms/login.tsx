@@ -1,7 +1,7 @@
-// components/LoginForm.tsx
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '../ui-elements/btn'
+
 export interface LoginFormValues {
   email: string
   hashedPassword: string
@@ -27,14 +27,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
     onLogin(formData)
   }
 
+  const labelStyle = 'block text-black text-sm font-bold mb-2'
+  const inputStyle =
+    'shadow appearance-none border w-full py-2 px-3 text-secondary leading-tight focus:outline-none focus:border-secondary'
+
   return (
-    <div className="shadow-md px-8 py-10 mb-4 max-w-md mx-auto mt-20 h-[500px]">
-      {' '}
-      {/* Adjusted height and padding for a longer rectangular shape */}
+    <div className="shadow-md px-8 py-10 m-auto mt-40 max-w-md h-[60vh] bg-white bg-opacity-80 rounded">
       <div className="mb-6 border-b border-gray-300 pb-4">
-        <div className="text-gray-700 text-sm">
+        <div className="text-black text-sm">
           <h2>
-            {' '}
             Every day is a new page
             <div> Log in to begin.</div>
           </h2>
@@ -42,14 +43,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
       </div>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
-          >
+          <label className={labelStyle} htmlFor="email">
             Email
           </label>
           <input
-            className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+            className={inputStyle}
             id="email"
             type="email"
             placeholder="Email"
@@ -60,14 +58,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           />
         </div>
         <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password"
-          >
+          <label className={labelStyle} htmlFor="password">
             Password
           </label>
           <input
-            className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+            className={inputStyle}
             id="password"
             type="password"
             placeholder="Password"
@@ -78,16 +73,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           />
         </div>
         <div className="flex items-center justify-between mb-10">
-          {/* Onclick expects "onclick" prop - form handles the onSubmit */}
           <Button variant="primary" onClick={() => {}}>
             Login
           </Button>
         </div>
         <div className="border-t border-gray-300 pt-10">
-          <h2 className="text-gray-700 text-sm">
+          <h2 className="text-black text-sm">
             New to Roshan Rooz?
             <Link
-              className="text-blue-500 hover:underline ml-1"
+              className="hover:underline ml-1 text-secondary"
               href="/register"
             >
               Sign up

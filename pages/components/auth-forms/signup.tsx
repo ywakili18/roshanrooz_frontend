@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '../ui-elements/btn'
+
 export interface RegistrationFormData {
   name: string
   email: string
@@ -28,8 +29,6 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-
-    // Check if passwords match before sending the request
     if (formData.hashedPassword === formData.confirmPassword) {
       onRegister(formData)
     } else {
@@ -37,27 +36,28 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
     }
   }
 
+  const labelStyle = 'block text-black text-sm font-bold mb-2'
+  const inputStyle =
+    'shadow appearance-none border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:border-secondary'
+
   return (
-    <div className="shadow-md px-8 py-10 mb-4 max-w-md mx-auto mt-10 h-[550px]">
-      <div className="mb-6  border-b border-gray-300 pb-">
-        <h2 className="text-gray-700 text-sm mb-5">
-          Have an account?
-          <Link href="/login" className="text-blue-500 hover:underline ml-1">
-            Log in
-          </Link>
-        </h2>
+    <div className="shadow-md px-8 py-10 m-auto mt-40 max-w-md h-[75vh] bg-white bg-opacity-80 rounded ">
+      <div className="mb-6 border-b border-gray-300 pb-4">
+        <div className="text-black text-sm">
+          <h2>
+            Join our community.
+            <div> Register to get started.</div>
+          </h2>
+        </div>
       </div>
       <form onSubmit={handleSubmit}>
         {/* Name Input */}
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="name"
-          >
+          <label className={labelStyle} htmlFor="name">
             Name
           </label>
           <input
-            className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+            className={inputStyle}
             id="name"
             type="text"
             placeholder="Name"
@@ -70,14 +70,11 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
 
         {/* Email Input */}
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
-          >
+          <label className={labelStyle} htmlFor="email">
             Email
           </label>
           <input
-            className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+            className={inputStyle}
             id="email"
             type="email"
             placeholder="Email"
@@ -90,14 +87,11 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
 
         {/* Password Input */}
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="hashedPassword"
-          >
+          <label className={labelStyle} htmlFor="hashedPassword">
             Password
           </label>
           <input
-            className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+            className={inputStyle}
             id="hashedPassword"
             type="password"
             placeholder="Password"
@@ -109,15 +103,12 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
         </div>
 
         {/* Confirm Password Input */}
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="confirmPassword"
-          >
+        <div className="mb-6">
+          <label className={labelStyle} htmlFor="confirmPassword">
             Confirm Password
           </label>
           <input
-            className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+            className={inputStyle}
             id="confirmPassword"
             type="password"
             placeholder="Confirm Password"
@@ -129,10 +120,18 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegister }) => {
         </div>
 
         {/* Register Button */}
-        <div className="flex items-center justify-between mt-8">
+        <div className="flex items-center justify-between mb-10">
           <Button variant="primary" onClick={() => {}}>
             Register
           </Button>
+        </div>
+        <div className="border-t border-gray-300 pt-4">
+          <h2 className="text-black text-sm">
+            Already have an account?
+            <Link className="hover:underline ml-1 text-secondary" href="/login">
+              Log in
+            </Link>
+          </h2>
         </div>
       </form>
     </div>

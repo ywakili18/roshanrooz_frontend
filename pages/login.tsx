@@ -12,7 +12,7 @@ const LoginPage: React.FC = () => {
   const { setLoading } = useLoading()
 
   const handleLogin = async (formData: LoginFormValues) => {
-    setLoading(true) // Start the loading process
+    setLoading(true)
 
     try {
       const response = await fetch(`${loginURL}`, {
@@ -28,17 +28,24 @@ const LoginPage: React.FC = () => {
         Cookies.set('authToken', data.token)
         login(data.user)
         router.push('/home')
+        setTimeout(() => {
+          setLoading(false)
+        }, 2000)
       } else {
         console.error('Login failed')
+        setLoading(false)
       }
     } catch (error) {
       console.error('Login error:', error)
+      setLoading(false)
     }
   }
 
   return (
-    <div>
-      <LoginForm onLogin={handleLogin} />
+    <div className="flex flex-col min-h-screen bg-primary">
+      <div className="flex-1">
+        <LoginForm onLogin={handleLogin} />
+      </div>
     </div>
   )
 }

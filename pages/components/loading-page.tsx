@@ -1,29 +1,41 @@
-import React from 'react';
+import React from 'react'
+import Image from 'next/image'
 
 const LoadingPage: React.FC = () => {
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="flex flex-col items-center">
-        <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
-        <h2 className="text-gray-500">Loading...</h2>
+    <div className="flex justify-center items-center h-screen bg-[#DB636F]">
+      <div className="flex flex-col items-center slide-in-fade">
+        <div className="mb-4">
+          <Image
+            src="/heart.svg"
+            alt="Loading Image"
+            width={128}
+            height={128}
+            layout="responsive"
+          />
+        </div>
+
+        <h2 className="text-[#FCF9DA]">Bringing your moments to light...</h2>
       </div>
+
       <style jsx>{`
-        .loader {
-          border-top-color: #3498db;
-          animation: spinner 1s linear infinite;
+        @keyframes slideInFade {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
         }
 
-        @keyframes spinner {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
+        .slide-in-fade {
+          animation: slideInFade 1s forwards;
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default LoadingPage;
+export default LoadingPage

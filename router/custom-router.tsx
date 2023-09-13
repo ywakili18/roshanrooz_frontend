@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useAuth } from '../../../context/auth-context';
+import { useAuth } from '../context/auth-context';
 import { useContext } from 'react';
 const CustomRouter: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();

@@ -39,18 +39,14 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
       alert('Passwords do not match')
     }
   }
-
-  const labelStyle = 'block text-black text-sm font-bold mb-2'
+  const labelStyle = 'block text-background text-sm font-bold mb-2'
   const inputStyle =
-    'shadow appearance-none border w-full py-2 px-3 text-black leading-tight focus:outline-none focus:border-secondary'
+    'shadow appearance-none border w-full py-2 px-3  leading-tight focus:outline-none focus:border-secondary'
 
   return (
-    <div className="shadow-md px-8 py-10 m-auto mt-40 max-w-md h-[75vh] white opacity-80 rounded ">
+    <div className="shadow-md px-8 py-10 m-auto mt-40 max-w-md h-[75vh] rounded bg-header">
       {emailExists && (
-        <div
-          className="mb-6 p-4 rounded-md shadow-lg red-50 border-l-4 border-red-400"
-          role="alert"
-        >
+        <div className="mb-6 p-4 rounded-md shadow-lg border-l-4 " role="alert">
           <div className="flex">
             <div className="flex-shrink-0">
               <svg
@@ -86,10 +82,10 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
       )}
 
       <div className="mb-6 border-b border-gray-300 pb-4">
-        <div className="text-black text-sm">
-          <h2>
-            Join our community.
-            <div> Register to get started.</div>
+        <div className="text-sm">
+          <h2 className="text-white">
+            Join our community
+            <div className="text-secondary">Register to get started</div>
           </h2>
         </div>
       </div>
@@ -165,16 +161,16 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
         {/* Register Button */}
         <div className="flex items-center justify-between mb-10">
           <button type="submit">
-            <Button variant="background" onClick={() => {}}>
+            <Button variant="primary" onClick={() => {}}>
               Register
             </Button>
           </button>
         </div>
-        <div className="border-t border-gray-300 pt-4">
-          <h2 className="text-black text-sm">
+        <div className="border-t border-gray-300 pt-10">
+          <h2 className="text-sm text-background">
             Already have an account?
-            <Link className="hover:underline ml-1 " href="/login">
-              Log in
+            <Link className="hover:underline ml-1 text-primary" href="/login">
+              Log in here
             </Link>
           </h2>
         </div>

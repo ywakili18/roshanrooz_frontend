@@ -28,15 +28,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, errorMessage }) => {
     onLogin(formData)
   }
 
-  const labelStyle = 'block text-black text-sm font-bold mb-2'
+  const labelStyle = 'block text-background text-sm font-bold mb-2'
   const inputStyle =
     'shadow appearance-none border w-full py-2 px-3  leading-tight focus:outline-none focus:border-secondary'
 
   return (
-    <div className="shadow-md px-8 py-10 m-auto mt-40 max-w-md h-[60vh] white opacity-80 rounded">
+    <div className="shadow-md px-8 py-10 m-auto mt-40 max-w-md h-[60vh] rounded bg-header">
       {errorMessage && (
         <div
-          className="mb-6 p-4 rounded-md shadow-lg rose-50 border-l-4 border-rose-400"
+          className="mb-6 p-4 rounded-md shadow-lg rose-50 border-l-4 "
           role="alert"
         >
           <div className="flex">
@@ -66,10 +66,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, errorMessage }) => {
       )}
 
       <div className="mb-6 border-b border-gray-300 pb-4">
-        <div className="text-black text-sm">
-          <h2>
+        <div className="text-sm">
+          <h2 className="text-white">
             Every day is a new page
-            <div> Log in to begin.</div>
+            <div className="text-secondary">Log in to begin</div>
           </h2>
         </div>
       </div>
@@ -105,14 +105,17 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, errorMessage }) => {
           />
         </div>
         <div className="flex items-center justify-between mb-10">
-          <Button variant="background" onClick={() => {}}>
+          <Button variant="primary" onClick={() => {}}>
             Login
           </Button>
         </div>
         <div className="border-t border-gray-300 pt-10">
-          <h2 className="text-black text-sm">
+          <h2 className="text-sm text-background">
             New to Roshan Rooz?
-            <Link className="hover:underline ml-1 " href="/register">
+            <Link
+              className="hover:underline ml-1 text-primary"
+              href="/register"
+            >
               Sign up
             </Link>
           </h2>

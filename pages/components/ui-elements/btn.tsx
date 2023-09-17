@@ -10,7 +10,7 @@ export const Button: React.FC<ButtonProps> = ({
   children
 }) => {
   const baseStyles =
-    'py-2 px-4 rounded-md shadow-lg focus:outline-none transition-colors'
+    'py-2 px-4 rounded-md shadow-lg focus:outline-none transition-colors text-[.9rem]'
 
   // For the Primary Button
   const primaryStyles = `

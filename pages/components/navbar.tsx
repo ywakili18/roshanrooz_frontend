@@ -4,44 +4,32 @@ import { useAuth } from '../../context/auth-context'
 const Navbar: React.FC = () => {
   const { isAuthenticated, logout } = useAuth()
 
-  // Common classes for navigation items.
-  const navCommonClasses =
-    'relative text-secondary mr-4 cursor-pointer px-4 py-2 rounded-lg group'
+  const primaryNavLink =
+    'bg-textAccent text-background hover:bg-navLink rounded py-2 px-6 border-2 border-textAccent transition-colors duration-200'
 
-  // Common classes for underline animation effect.
-  const underlineEffect =
-    'absolute left-0 w-0 h-[.4px] bg-secondary group-hover:w-full transition-width duration-300 ease-in-out bottom-0 transform-origin-left'
+  const secondaryNavLink =
+    'bg-background text-background hover:bg-primary rounded hover:text-background py-2 px-6 border-2 border-primary text-primary transition-colors duration-200'
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 p-6 bg-primary border border-gray-200 ">
+    <nav className="fixed top-0 left-0 w-full z-50 p-6 ">
       <div className="container mx-auto flex justify-between items-center">
         <div>
           <Link href="/">
-            <span className={`${navCommonClasses}`}>
-              Roshan Rooz
-              <span className={`${underlineEffect}`}></span>
-            </span>
+            <span className={``}>Roshan Rooz</span>
           </Link>
         </div>
         <div>
           {isAuthenticated() ? (
-            <button className={navCommonClasses} onClick={() => logout()}>
+            <button className={primaryNavLink} onClick={() => logout()}>
               Logout
-              <span className={`${underlineEffect}`}></span>
             </button>
           ) : (
-            <div className="flex">
+            <div className="flex gap-5">
               <Link href="/login">
-                <span className={`${navCommonClasses}`}>
-                  Login
-                  <span className={`${underlineEffect}`}></span>
-                </span>
+                <span className={`${secondaryNavLink}`}>Login</span>
               </Link>
               <Link href="/register">
-                <span className={`${navCommonClasses}`}>
-                  Register
-                  <span className={`${underlineEffect}`}></span>
-                </span>
+                <span className={`${primaryNavLink}`}>Sign up here </span>
               </Link>
             </div>
           )}

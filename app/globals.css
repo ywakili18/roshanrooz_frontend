@@ -2,22 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* body{
-  background-color: black;
-} */
+:root {
+  --color-background: #f4f3ee;
+  --color-text: #121212;
+  --color-header: #606c38;
+}
+
+body {
+  background-color: var(--color-background);
+  font-family: 'Lato', sans-serif;
+  color: var(--color-text);
+}
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3 {
   font-family: 'Montserrat', sans-serif;
+  color: var(--color-header);
 }
 
-body,
-p {
+p,
+span,
+small {
   font-family: 'Lato', sans-serif;
+  color: var(--color-text);
 }
 
 /* globals.css or your global styles file */
@@ -30,6 +38,10 @@ p {
   }
 }
 
-.fade-in {
-  animation: fadeIn 0.8s ease-in-out forwards;
+.fade-in-scale-up {
+  animation: fadeInScaleUp 1s forwards;
+}
+
+.fade-out-scale-down {
+  animation: fadeOutScaleDown 1s forwards;
 }

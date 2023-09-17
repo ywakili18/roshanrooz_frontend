@@ -1,10 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { useLoading } from '../../context/loading-context'
 
 const LoadingPage: React.FC = () => {
+  const { loading } = useLoading()
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout
+    if (loading) {
+      timer = setTimeout(() => {
+        setShow(true)
+      }, 100)
+    } else {
+      setShow(false)
+    }
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [loading])
+
+  if (!show) return null
+
   return (
-    <div className="flex justify-center items-center h-screen bg-[#DB636F]">
-      <div className="flex flex-col items-center slide-in-fade">
+    <div className="fixed inset-0 flex justify-center items-center [#DB636F] z-50">
+      <div className="fade-in-scale-up flex flex-col items-center">
         <div className="mb-4">
           <Image
             src="/heart.svg"
@@ -14,24 +35,23 @@ const LoadingPage: React.FC = () => {
             layout="responsive"
           />
         </div>
-
         <h2 className="text-[#FCF9DA]">Bringing your moments to light...</h2>
       </div>
 
       <style jsx>{`
-        @keyframes slideInFade {
+        @keyframes fadeInScaleUp {
           from {
-            transform: translateX(100%);
+            transform: scale(0.8);
             opacity: 0;
           }
           to {
-            transform: translateX(0);
+            transform: scale(1);
             opacity: 1;
           }
         }
 
-        .slide-in-fade {
-          animation: slideInFade 1s forwards;
+        .fade-in-scale-up {
+          animation: fadeInScaleUp 1s forwards;
         }
       `}</style>
     </div>

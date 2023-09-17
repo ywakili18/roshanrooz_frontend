@@ -9,9 +9,10 @@ export interface LoginFormValues {
 
 export interface LoginFormProps {
   onLogin: (formData: LoginFormValues) => void
+  errorMessage: string | null
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ onLogin, errorMessage }) => {
   const [formData, setFormData] = useState<LoginFormValues>({
     email: '',
     hashedPassword: ''
@@ -29,10 +30,41 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
   const labelStyle = 'block text-black text-sm font-bold mb-2'
   const inputStyle =
-    'shadow appearance-none border w-full py-2 px-3 text-secondary leading-tight focus:outline-none focus:border-secondary'
+    'shadow appearance-none border w-full py-2 px-3  leading-tight focus:outline-none focus:border-secondary'
 
   return (
-    <div className="shadow-md px-8 py-10 m-auto mt-40 max-w-md h-[60vh] bg-white bg-opacity-80 rounded">
+    <div className="shadow-md px-8 py-10 m-auto mt-40 max-w-md h-[60vh] white opacity-80 rounded">
+      {errorMessage && (
+        <div
+          className="mb-6 p-4 rounded-md shadow-lg rose-50 border-l-4 border-rose-400"
+          role="alert"
+        >
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <svg
+                className="h-5 w-5 text-rose-400"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 2a8 8 0 100 16 8 8 0 000-16zM4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <div className="ml-3">
+              <h3 className="text-sm leading-5 font-medium text-rose-800">
+                Error!
+              </h3>
+              <div className="mt-2 text-sm leading-5 text-rose-600">
+                <p>{errorMessage}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="mb-6 border-b border-gray-300 pb-4">
         <div className="text-black text-sm">
           <h2>
@@ -73,17 +105,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           />
         </div>
         <div className="flex items-center justify-between mb-10">
-          <Button variant="primary" onClick={() => {}}>
+          <Button variant="background" onClick={() => {}}>
             Login
           </Button>
         </div>
         <div className="border-t border-gray-300 pt-10">
           <h2 className="text-black text-sm">
             New to Roshan Rooz?
-            <Link
-              className="hover:underline ml-1 text-secondary"
-              href="/register"
-            >
+            <Link className="hover:underline ml-1 " href="/register">
               Sign up
             </Link>
           </h2>

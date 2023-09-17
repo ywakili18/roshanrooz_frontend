@@ -1,41 +1,37 @@
 import Link from 'next/link'
 import Image from 'next/image'
-
+import { Button } from './ui-elements/btn'
 const LandingPage: React.FC = () => {
   return (
-    <div className="bg-primary">
-      <div className="fade-in  bg-white bg-opacity-80 w-[95%] m-auto min-h-screen text-[#DB636F] flex flex-col items-center justify-center p-4 lg:p-0">
-        <div className="flex flex-col lg:flex-row w-full max-w-screen-lg items-center justify-center gap-8">
+    <div className="background">
+      <div className="m-auto min-h-screen  flex flex-col items-center justify-center p-4 lg:p-0 mt-20 lg:mt-0">
+        <div className="flex flex-col md:flex-row w-full max-w-screen-lg items-center justify-center gap-8">
+          <section className="lg:w-1/2 text-left lg:text-left mt-20 md:max-w-sm">
+            <h2 className="text-4xl font-semibold mb-6 text-text">
+              Transform Your{' '}
+              <h2 className="text-secondary ">Mental Well-being</h2>
+            </h2>
+            <p className="mb-8">
+              Roshan Rooz: Your digital mental health ally. Log your daily
+              emotions, pen your reflections, and uplift your spirit with
+              affirmations powered by ChatGPT. Track and visualize your mental
+              well-being journey with our intuitive mood analytics.
+            </p>
+            <Link href="/register">
+              <Button variant="primary">Get started</Button>
+            </Link>
+          </section>
           <div className="flex items-center justify-center">
             <Image
-              src="/transparent.svg"
+              src="/roshan_logo.svg"
               width={500}
               height={500}
               alt="Roshan Rooz, Your journey to lighter days"
             />
           </div>
-
-          <section className="lg:w-1/2 text-center lg:text-left mt-20">
-            <h2 className="text-3xl font-semibold mb-6">
-              Transform Your Mental Well-being
-            </h2>
-            <p className="mb-8">
-              Roshan Rooz is your personal mental health journaling companion.
-              Record your daily moods, jot down your thoughts, and get a dose of
-              positivity with our ChatGPT-powered affirmations. Watch your
-              journey to better mental health unfold with our mood tracking
-              feature.
-            </p>
-            <Link
-              href="/register"
-              className="bg-[#DB636F] text-white py-3 px-6 rounded-full text-sm font-medium hover:bg-opacity-80 transition duration-300 ease-in-out"
-            >
-              Get started
-            </Link>
-          </section>
         </div>
 
-        <section className="mt-16 max-w-4xl mx-auto text-center lg:text-left">
+        <section className="mt-16 max-w-5xl mx-auto  lg:text-left">
           <h2 className="text-3xl font-semibold mb-6">
             Why Choose Roshan Rooz?
           </h2>

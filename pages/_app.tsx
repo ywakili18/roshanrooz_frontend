@@ -7,6 +7,7 @@ import Footer from './components/footer'
 import { LoadingProvider, useLoading } from '@/context/loading-context'
 import '../app/globals.css'
 import LoadingPage from './components/loading-page'
+
 const Content: React.FC<{ Component: any; pageProps: any }> = ({
   Component,
   pageProps
@@ -16,7 +17,14 @@ const Content: React.FC<{ Component: any; pageProps: any }> = ({
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      {loading ? <LoadingPage /> : <Component {...pageProps} />}
+      <div
+        className={`transition-opacity duration-300 ${
+          loading ? 'opacity-0' : 'opacity-100'
+        }`}
+      >
+        <Component {...pageProps} />
+      </div>
+      {loading && <LoadingPage />}
       <Footer />
     </div>
   )

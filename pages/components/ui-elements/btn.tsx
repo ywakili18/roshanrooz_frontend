@@ -1,6 +1,7 @@
 type ButtonProps = {
   variant?: 'primary' | 'secondary'
   onClick?: () => void
+  type?: 'button' | 'submit' | 'reset'
   children: React.ReactNode
 }
 
@@ -19,7 +20,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   // For the Secondary Button
   const secondaryStyles = `
-    bg-text text-background border-header 
+    bg-textAccent text-background border-header 
     hover:bg-header hover:text-background
   `
 

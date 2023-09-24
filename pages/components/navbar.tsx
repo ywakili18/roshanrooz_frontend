@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useAuth } from '../../context/auth-context'
-
+import Image from 'next/image'
 const Navbar: React.FC = () => {
   const { isAuthenticated, logout } = useAuth()
 
@@ -11,11 +11,16 @@ const Navbar: React.FC = () => {
     'bg-background text-background hover:bg-primary rounded hover:text-background py-2 px-6 border-2 border-primary text-primary transition-colors duration-200'
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 p-6 ">
+    <nav className="fixed top-0 left-0 w-full z-50 p-2 shadow rounded bg-[#f7f1d5]">
       <div className="container mx-auto flex justify-between items-center">
         <div>
           <Link href="/">
-            <span className={``}>Roshan Rooz</span>
+            <Image
+              src="/sunshine_logo.svg"
+              width={80}
+              height={50}
+              alt="rooshan rooz logo"
+            />
           </Link>
         </div>
         <div>
@@ -29,7 +34,7 @@ const Navbar: React.FC = () => {
                 <span className={`${secondaryNavLink}`}>Login</span>
               </Link>
               <Link href="/register">
-                <span className={`${primaryNavLink}`}>Sign up here </span>
+                <span className={`${primaryNavLink}`}>Sign up </span>
               </Link>
             </div>
           )}

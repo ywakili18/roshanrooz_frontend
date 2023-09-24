@@ -40,9 +40,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   const fetchCurrentUser = async (token: string) => {
     try {
-      const userUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH_CHECKUSER
+      const userUrl = process.env.NEXT_PUBLIC_BACKEND_URL_AUTH_CURRENTUSER
       if (!userUrl) {
-        console.error('Backend URL for checking user is not defined.')
         setLoading(false)
         return
       }
@@ -71,7 +70,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   }
 
   const logout = () => {
-    Cookies.remove('authToken') // Remove the token when logging out
+    Cookies.remove('authToken')
     setUser(null)
   }
 

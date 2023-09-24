@@ -24,18 +24,18 @@ const LoadingPage: React.FC = () => {
   if (!show) return null
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center [#DB636F] z-50">
+    <div className="fixed inset-0 flex justify-center items-center bg-textAccent z-50">
       <div className="fade-in-scale-up flex flex-col items-center">
         <div className="mb-4">
           <Image
-            src="/heart.svg"
+            src="/sunshine.svg"
             alt="Loading Image"
             width={128}
             height={128}
             layout="responsive"
           />
         </div>
-        <h2 className="text-[#FCF9DA]">Bringing your moments to light...</h2>
+        <h2 className="text-secondary">Bringing your moments to light...</h2>
       </div>
 
       <style jsx>{`

@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '../ui-elements/btn'
-
+import ErrorAlert from '../ui-elements/error-alert'
 export interface RegistrationFormData {
   name: string
   email: string
@@ -12,12 +12,12 @@ export interface RegistrationFormData {
 
 export interface RegistrationFormProps {
   onRegister: (formData: RegistrationFormData) => void
-  emailExists: boolean
+  errorMessage: string | null
 }
 
 const RegistrationForm: React.FC<RegistrationFormProps> = ({
   onRegister,
-  emailExists
+  errorMessage
 }) => {
   const [formData, setFormData] = useState<RegistrationFormData>({
     name: '',
@@ -44,42 +44,8 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
     'shadow appearance-none border w-full py-2 px-3  leading-tight focus:outline-none focus:border-secondary'
 
   return (
-    <div className="shadow-md px-8 py-10 m-auto mt-40 max-w-md h-[75vh] rounded bg-header">
-      {emailExists && (
-        <div className="mb-6 p-4 rounded-md shadow-lg border-l-4 " role="alert">
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <svg
-                className="h-5 w-5 text-red-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 2a8 8 0 100 16 8 8 0 000-16zM4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <div className="ml-3">
-              <h3 className="text-sm leading-5 font-medium text-red-800">
-                Oops!
-              </h3>
-              <div className="mt-2 text-sm leading-5 text-red-700">
-                <p>
-                  This email already exists.
-                  <Link
-                    href="/login"
-                    className="ml-1 font-semibold text-red-500 hover:text-red-600 hover:underline"
-                  >
-                    Log In
-                  </Link>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+    <div className="shadow-md px-8 py-10 m-auto mt-32 max-w-md min-h-[90vh] rounded bg-header">
+      {errorMessage && <ErrorAlert message="Error!" detail={errorMessage} />}
 
       <div className="mb-6 border-b border-gray-300 pb-4">
         <div className="text-sm">
@@ -160,11 +126,9 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
 
         {/* Register Button */}
         <div className="flex items-center justify-between mb-10">
-          <button type="submit">
-            <Button variant="primary" onClick={() => {}}>
-              Register
-            </Button>
-          </button>
+          <Button variant="primary" type="submit">
+            Register
+          </Button>
         </div>
         <div className="border-t border-gray-300 pt-10">
           <h2 className="text-sm text-background">

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '../ui-elements/btn'
-
+import ErrorAlert from '../ui-elements/error-alert'
 export interface LoginFormValues {
   email: string
   hashedPassword: string
@@ -10,9 +10,14 @@ export interface LoginFormValues {
 export interface LoginFormProps {
   onLogin: (formData: LoginFormValues) => void
   errorMessage: string | null
+  onResendConfirmation?: () => void
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin, errorMessage }) => {
+const LoginForm: React.FC<LoginFormProps> = ({
+  onLogin,
+  errorMessage,
+  onResendConfirmation
+}) => {
   const [formData, setFormData] = useState<LoginFormValues>({
     email: '',
     hashedPassword: ''
@@ -33,36 +38,22 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, errorMessage }) => {
     'shadow appearance-none border w-full py-2 px-3  leading-tight focus:outline-none focus:border-secondary'
 
   return (
-    <div className="shadow-md px-8 py-10 m-auto mt-40 max-w-md h-[60vh] rounded bg-header">
+    <div className="shadow-md px-8 py-10 m-auto mt-40 max-w-md min-h-[75vh] rounded bg-header">
       {errorMessage && (
-        <div
-          className="mb-6 p-4 rounded-md shadow-lg rose-50 border-l-4 "
-          role="alert"
-        >
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <svg
-                className="h-5 w-5 text-rose-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+        <ErrorAlert
+          message="Error!"
+          detail={errorMessage}
+          action={
+            errorMessage.includes('not confirmed') ? (
+              <a
+                onClick={onResendConfirmation}
+                className="mt-5 flex text-blue-500 underline cursor-pointer hover:text-blue-800 transition duration-200 ease-in-out"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M10 2a8 8 0 100 16 8 8 0 000-16zM4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <div className="ml-3">
-              <h3 className="text-sm leading-5 font-medium text-rose-800">
-                Error!
-              </h3>
-              <div className="mt-2 text-sm leading-5 text-rose-600">
-                <p>{errorMessage}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+                Click here to resend confirmation to your email
+              </a>
+            ) : undefined
+          }
+        />
       )}
 
       <div className="mb-6 border-b border-gray-300 pb-4">
